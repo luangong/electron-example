@@ -1,0 +1,32 @@
+{
+  "name": "electron-example",
+  "version": "1.0.0",
+  "description": "A example Electron app",
+  "main": "main.js",
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "./codesign.sh",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.63",
+    "@electron-forge/maker-deb": "^6.0.0-beta.63",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.63",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
+    "@electron-forge/maker-zip": "^6.0.0-beta.63",
+    "electron": "^19.0.4",
+    "eslint": "^8.17.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.23.4"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
+  },
+  "config": {
+    "forge": "forge.config.js"
+  }
+}

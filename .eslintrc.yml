@@ -1,0 +1,28 @@
+env:
+  browser: true
+  # node: true
+  # commonjs: true
+  es2021: true
+extends:
+  - airbnb-base
+parserOptions:
+  ecmaVersion: 12
+settings:
+  # Avoid "error: 'electron' should be listed in the project's dependencies, not devDependencies"
+  # https://github.com/benmosher/eslint-plugin-import#importcore-modules
+  import/core-modules:
+    - electron
+rules:
+  no-console: off
+  spaced-comment: off
+overrides:
+  - files: [main.js]
+    env:
+      browser: false
+      node: true
+      commonjs: true
+    rules: {}
+  - files: [preload.js]
+    env:
+      browser: true
+      node: true

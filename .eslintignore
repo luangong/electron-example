@@ -1,0 +1,4 @@
+# https://eslint.org/docs/user-guide/configuring/ignoring-code#the-eslintignore-file
+
+# node_modules/ is ignored by default
+/out/
