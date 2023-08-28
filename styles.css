@@ -1,0 +1,29 @@
+body {
+  background-color: #fff;
+  color: #000;
+  /* font-family: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', sans-serif; */
+}
+
+/*
+ * TODO: 给 body 元素添加诸如 class="color-scheme-dark" 这样的属性来表示深色模式，而不是直接修改
+ * body 元素的 background-color 和 color 属性，这样页面中的元素可以应用除 background-color 和 color
+ * 之外的样式。
+ */
+/*
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: #fff;
+    color: #000;
+  }
+}
+*/
+
+@media (prefers-color-scheme: dark) {
+  body, button {
+    background-color: #222;
+    color: #ddd;
+  }
+  button {
+    border-color: #ddd;
+  }
+}

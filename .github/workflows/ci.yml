@@ -1,0 +1,51 @@
+# This workflow will do a clean installation of Node dependencies, cache/restore them,
+# build the source code and run tests with the specified version of Node.
+#
+# For more information, see
+# https://docs.github.com/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Node.js CI with pnpm
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # https://github.com/actions/checkout
+      - uses: actions/checkout@v3
+
+      # NOTE: This step must be run before 'actions/setup-node' if we let
+      # 'actions/setup-node' handle caching for us because it will run 'pnpm store path'
+      # to get the path to the pnpm virtual store.
+      #
+      # See https://github.com/pnpm/action-setup for more details.
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      # https://github.com/actions/setup-node
+      # https://docs.github.com/actions/using-workflows/caching-dependencies-to-speed-up-workflows
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile --prefer-offline
+      - run: pnpm lint
+      - run: pnpm package
+      - run: pnpm make
+
+      # It’s currently not possible to preview files in the artifact.
+      # Follow up with https://github.com/actions/upload-artifact/issues/14 for further
+      # updates.
+      #
+      # https://docs.github.com/actions/using-workflows/storing-workflow-data-as-artifacts
+      # https://github.com/actions/upload-artifact
+      # - uses: actions/upload-artifact@v3
+      #   with:
+      #     path: coverage
